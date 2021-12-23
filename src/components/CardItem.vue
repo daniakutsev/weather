@@ -1,11 +1,13 @@
 <template>
   <div class="weatherCard">
-    <div class="cardText"><strong>Город:</strong>{{ card.cityName }}</div>
+    <div class="cardText">{{ card.cityName }}</div>
     <div class="cardText">
       <strong>{{ card.temperature }}</strong>
     </div>
-    <button class="btn">Обновить</button>
-    <button class="btn">Удалить</button>
+    <div class="card__btns">
+      <my-button class="btn">Обновить</my-button>
+      <my-button class="btn" @click="$emit('remove', card)">Удалить</my-button>
+    </div>
   </div>
 </template>
 
@@ -21,4 +23,22 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.weatherCard {
+  margin: 15px;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  border: 1px solid;
+  height: 200px;
+  width: 200px;
+}
+.cardText {
+  font-size: 25px;
+  margin: 15px;
+}
+</style>

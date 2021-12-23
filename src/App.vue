@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <card-form @create="createCard"></card-form>
-    <card-list :cards="cards"></card-list>
+    <card-list :cards="cards" @remove="removeCard"></card-list>
   </div>
 </template>
 
@@ -31,9 +31,10 @@ export default {
       this.temperature = 0;
       this.cards.push(card);
     },
-    inputCityName(event) {
-      this.cityName = event.target.value;
+    removeCard(card) {
+      this.cards = this.cards.filter((c) => c.id !== card.id);
     },
+    async fetchCities() {},
   },
 };
 </script>
