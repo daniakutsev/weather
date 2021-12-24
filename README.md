@@ -1,4 +1,4 @@
-# weather
+# weatherProject
 
 ## Project setup
 ```
