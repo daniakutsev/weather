@@ -1,4 +1,4 @@
-<template>
+<template class="cardForm">
   <form @submit.prevent class="header">
     <my-input
       v-model.trim="card.cityName"
@@ -40,5 +40,8 @@ export default {
 <style scoped>
 .header {
   padding: 10px;
+}
+.cardForm {
+  z-index: 10;
 }
 </style>

@@ -9,7 +9,14 @@
       :cards="cards"
       @remove="removeCard"
       @update="updateWeather"
+      @updateState="updateWindowState"
+      :window-state="windowState"
     ></card-list>
+    <my-full-form
+      v-show="windowState"
+      @updateState="updateWindowState"
+      :window-state="windowState"
+    ></my-full-form>
   </div>
 </template>
 
@@ -17,10 +24,12 @@
 import CardForm from "./components/CardForm";
 import CardList from "./components/CardList";
 import axios from "axios";
+import MyFullForm from "./components/UI/MyFullForm";
 //import MyButton from "./components/UI/MyButton";
 
 export default {
   components: {
+    MyFullForm,
     CardList,
     CardForm,
   },
@@ -30,6 +39,7 @@ export default {
       currentValue: "",
       cityName: "",
       temperature: 0,
+      windowState: false,
       cards: [],
       APIKEY: "495b9188c36a232d7ca0b1ee57ed4764",
     };
@@ -40,26 +50,29 @@ export default {
     },
     async createCard(card) {
       this.cards.push(card);
+      this.updateWeather(card);
+    },
+    async updateWeather(card) {
       try {
         const response = await axios.get(
           `https://api.openweathermap.org/data/2.5/weather?q=${card.cityName}&units=metric&appid=495b9188c36a232d7ca0b1ee57ed4764`
         );
-        console.log(response.data.main.temp);
         card.temperature = response.data.main.temp;
       } catch (e) {
         alert("Error");
       }
     },
-    async updateWeather(card) {
-      const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${card.cityName}&units=metric&appid=495b9188c36a232d7ca0b1ee57ed4764`
-      );
-      card.temperature = response.data.main.temp;
-      console.log(card.temperature);
-    },
     updaterHandler(data) {
       this.currentValue = data;
       // console.log(this.currentValue);
+    },
+    updateWindowState() {
+      if (this.windowState === false) {
+        this.windowState = true;
+      } else {
+        this.windowState = false;
+      }
+      console.log(this.windowState);
     },
   },
 };
@@ -69,5 +82,6 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  position: relative;
 }
 </style>

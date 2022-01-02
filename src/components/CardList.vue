@@ -1,4 +1,4 @@
-<template>
+<template class="cardList">
   <div v-if="cards.length > 0">
     <h3>Список городов:</h3>
     <card-item
@@ -6,7 +6,10 @@
       v-for="card in cards"
       :card="card"
       :key="card.id"
+      :window-state="windowState"
       @remove="$emit('remove', card)"
+      @update="$emit('update', card)"
+      @updateState="$emit('updateState', windowState)"
     ></card-item>
   </div>
   <h2 v-else style="color: red; margin-left: 10px">Список городов пуст</h2>
@@ -25,8 +28,16 @@ export default {
       type: Array,
       required: true,
     },
+    windowState: {
+      type: Boolean,
+      required: true,
+    },
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.cardList {
+  z-index: 10;
+}
+</style>

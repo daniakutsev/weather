@@ -1,11 +1,11 @@
-<template>
-  <div class="weatherCard">
+<template class="cardItem">
+  <div class="weatherCard" @click="$emit('updateState', windowState)">
     <div class="cardText">{{ card.cityName }}</div>
     <div class="cardText">
       <strong>{{ card.temperature }}</strong>
     </div>
     <div class="card__btns">
-      <my-button class="btn">Обновить</my-button>
+      <my-button class="btn" @click="$emit('update', card)">Обновить</my-button>
       <my-button class="btn" @click="$emit('remove', card)">Удалить</my-button>
     </div>
   </div>
@@ -16,6 +16,10 @@ export default {
   props: {
     card: {
       type: Object,
+      required: true,
+    },
+    windowState: {
+      type: Boolean,
       required: true,
     },
   },
@@ -37,8 +41,12 @@ export default {
   height: 200px;
   width: 200px;
 }
+
 .cardText {
   font-size: 25px;
   margin: 15px;
+}
+.cardItem {
+  z-index: 10;
 }
 </style>
