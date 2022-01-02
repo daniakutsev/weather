@@ -4,6 +4,7 @@
       v-model.trim="card.cityName"
       placeholder="Введите название города"
       type="text"
+      @update-value="handler"
     />
     <my-button class="addBtn" @click="createCard">Добавить</my-button>
   </form>
@@ -27,6 +28,9 @@ export default {
         cityName: "",
         temperature: 0,
       };
+    },
+    handler(data) {
+      this.$emit("updater", data);
     },
   },
   name: "CardForm",
