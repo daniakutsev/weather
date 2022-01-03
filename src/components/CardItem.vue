@@ -4,10 +4,10 @@
     <div class="cardText">
       <strong>{{ card.temperature }}</strong>
     </div>
-    <div class="card__btns">
-      <my-button class="btn" @click="$emit('update', card)">Обновить</my-button>
-      <my-button class="btn" @click="$emit('remove', card)">Удалить</my-button>
-    </div>
+  </div>
+  <div class="card__btns">
+    <my-button class="btn" @click="$emit('update', card)">Обновить</my-button>
+    <my-button class="btn" @click="$emit('remove', card)">Удалить</my-button>
   </div>
 </template>
 

@@ -3,8 +3,8 @@
     <h3>Список городов:</h3>
     <card-item
       class="weatherCard"
-      v-for="card in cards"
       :card="card"
+      v-for="card in cards"
       :key="card.id"
       :window-state="windowState"
       @remove="$emit('remove', card)"
@@ -24,6 +24,10 @@ export default {
   },
   name: "CardList",
   props: {
+    card: {
+      type: String,
+      required: true,
+    },
     cards: {
       type: Array,
       required: true,

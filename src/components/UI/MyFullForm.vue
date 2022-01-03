@@ -1,11 +1,12 @@
 <template>
-  <div
+  <transition
+    name="fade"
     class="fullForm"
     @updateState="$emit('updateState', windowState)"
     @click="$emit('updateState', windowState)"
   >
     <h1></h1>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -30,5 +31,15 @@ export default {
   top: 40px;
   left: 40px;
   background: white;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
