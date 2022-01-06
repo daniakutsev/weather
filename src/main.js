@@ -6,15 +6,18 @@ import Main from "./pages/Main";
 
 
 const routes = [
-  { path: "/Main", component: Main }
+  { path: "/", component: Main }
 ];
-const router = new VueRouter({
+
+const router = VueRouter.createRouter({
+  history: VueRouter.createWebHashHistory(),
   routes
 });
-//const app = createApp(App);
-const app = new Vue({
-  router
-}).$mount("#app");
+
+
+const app = Vue.createApp({})
+app.use(router)
+app.mount('#app')
 components.forEach((component) => {
   app.component(component.name, component);
 })
