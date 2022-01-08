@@ -1,24 +1,12 @@
 import components from "./components/UI";
-import Vue from "vue";
-import VueRouter from "vue-router";
-import Main from "./pages/Main";
+import { createApp } from 'vue'
+import App from './App.vue'
+import router from "./components/router/router";
 
+const app = createApp(App)
+app.use(router).mount('#app')
 
-
-const routes = [
-  { path: "/", component: Main }
-];
-
-const router = VueRouter.createRouter({
-  history: VueRouter.createWebHashHistory(),
-  routes
-});
-
-
-const app = Vue.createApp({})
-app.use(router)
-app.mount('#app')
 components.forEach((component) => {
   app.component(component.name, component);
-})
+});
 
