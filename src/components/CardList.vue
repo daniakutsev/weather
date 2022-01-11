@@ -6,10 +6,9 @@
       :card="card"
       v-for="card in cards"
       :key="card.id"
-      :window-state="windowState"
       @remove="$emit('remove', card)"
       @update="$emit('update', card)"
-      @updateState="$emit('updateState', windowState)"
+      @getUrl="$emit('gerUrl')"
     ></card-item>
   </div>
   <h2 v-else style="color: red; margin-left: 10px">Список городов пуст</h2>
@@ -25,15 +24,11 @@ export default {
   name: "CardList",
   props: {
     card: {
-      type: String,
-      required: true,
+      type: Object,
+      required: true
     },
     cards: {
       type: Array,
-      required: true,
-    },
-    windowState: {
-      type: Boolean,
       required: true,
     },
   },

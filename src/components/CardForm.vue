@@ -17,7 +17,10 @@ export default {
       card: {
         cityName: "",
         temperature: 0,
-      },
+        feelsLike: 0,
+        windSpeed: 0,
+        country: ""
+      }
     };
   },
   methods: {
@@ -27,13 +30,16 @@ export default {
       this.card = {
         cityName: "",
         temperature: 0,
+        feelsLike: 0,
+        windSpeed: 0,
+        country: ""
       };
     },
     handler(data) {
       this.$emit("updater", data);
-    },
+    }
   },
-  name: "CardForm",
+  name: "CardForm"
 };
 </script>
 
@@ -41,6 +47,7 @@ export default {
 .header {
   padding: 10px;
 }
+
 .cardForm {
   z-index: 10;
 }

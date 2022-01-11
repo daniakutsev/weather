@@ -1,5 +1,6 @@
 <template class="cardItem">
-  <div class="weatherCard" @click="$emit('updateState', windowState)">
+  <div class="weatherCard"
+  @click="$router.push('/FullCard')">
     <div class="cardText">{{ card.cityName }}</div>
     <div class="cardText">
       <strong>{{ card.temperature }}</strong>
@@ -12,18 +13,18 @@
 </template>
 
 <script>
+import MyButton from "./UI/MyButton";
+
 export default {
+  components: { MyButton },
   props: {
     card: {
       type: Object,
-      required: true,
-    },
-    windowState: {
-      type: Boolean,
-      required: true,
-    },
+      required: true
+    }
+
   },
-  name: "CardItem",
+  name: "CardItem"
 };
 </script>
 
@@ -46,6 +47,7 @@ export default {
   font-size: 25px;
   margin: 15px;
 }
+
 .cardItem {
   z-index: 10;
 }
