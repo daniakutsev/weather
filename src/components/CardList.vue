@@ -8,7 +8,7 @@
       :key="card.id"
       @remove="$emit('remove', card)"
       @update="$emit('update', card)"
-      @getUrl="$emit('gerUrl')"
+
     ></card-item>
   </div>
   <h2 v-else style="color: red; margin-left: 10px">Список городов пуст</h2>
@@ -23,10 +23,7 @@ export default {
   },
   name: "CardList",
   props: {
-    card: {
-      type: Object,
-      required: true
-    },
+
     cards: {
       type: Array,
       required: true,

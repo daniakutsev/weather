@@ -30,17 +30,13 @@ export default {
       currentValue: "",
       cityName: "",
       temperature: 0,
-      url: "",
       cards: [],
 
       APIKEY: "495b9188c36a232d7ca0b1ee57ed4764"
     };
   },
 
-    // getURL(){
-    //   this.url = window.location.pathname;
-    //   console.log(this.url);
-    // }
+
   methods: {
     removeCard(card){
       this.cards = this.cards.filter((c) => c.id !== card.id);
