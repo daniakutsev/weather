@@ -20,7 +20,8 @@ export default {
         feelsLike: 0,
         windSpeed: 0,
         country: ""
-      }
+      },
+
     };
   },
   methods: {

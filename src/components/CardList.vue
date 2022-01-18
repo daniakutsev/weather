@@ -1,5 +1,5 @@
 <template class="cardList">
-  <div v-if="cards.length > 0">
+  <div v-if="cards && cards.length > 0">
     <h3>Список городов:</h3>
     <card-item
       class="weatherCard"
@@ -8,7 +8,6 @@
       :key="card.id"
       @remove="$emit('remove', card)"
       @update="$emit('update', card)"
-
     ></card-item>
   </div>
   <h2 v-else style="color: red; margin-left: 10px">Список городов пуст</h2>
@@ -23,7 +22,6 @@ export default {
   },
   name: "CardList",
   props: {
-
     cards: {
       type: Array,
       required: true,

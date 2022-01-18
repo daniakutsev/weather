@@ -1,6 +1,6 @@
 <template class="cardItem">
   <div class="weatherCard"
-  @click="$router.push('/FullCard')">
+  @click="$router.push(`/FullCard/${card.cityName}`)">
     <div class="cardText">{{ card.cityName }}</div>
     <div class="cardText">
       <strong>{{ card.temperature }}</strong>

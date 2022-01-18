@@ -6,7 +6,7 @@
       @update="updateWeather"
     ></card-form>
     <card-list
-      :cards="cards"
+      :cards="getCards"
       @remove="removeCard"
       @update="updateWeather"
     ></card-list>
@@ -16,8 +16,7 @@
 <script>
 import CardForm from "../components/CardForm";
 import CardList from "../components/CardList";
-import axios from "axios";
-
+import { mapState, mapActions,mapGetters } from "vuex";
 
 export default {
   components: {
@@ -27,42 +26,32 @@ export default {
   name: "App",
   data() {
     return {
-      currentValue: "",
-      cityName: "",
-      temperature: 0,
-      cards: [],
-
-      APIKEY: "495b9188c36a232d7ca0b1ee57ed4764"
+      currentValue: ""
     };
   },
 
 
   methods: {
-    removeCard(card){
+    ...mapActions({
+      createCard: "createCard",
+      updateWeather: "updateWeather"
+    }),
+    removeCard(card) {
       this.cards = this.cards.filter((c) => c.id !== card.id);
-    },
-    async createCard(card) {
-      this.cards.push(card);
-      await this.updateWeather(card);
-    },
-    async updateWeather(card) {
-      try {
-        const response = await axios.get(
-          `https://api.openweathermap.org/data/2.5/weather?q=${card.cityName}&units=metric&appid=495b9188c36a232d7ca0b1ee57ed4764`
-        );
-        card.temperature = response.data.main.temp;
-        card.feelsLike = response.data.main.feels_like;
-        card.windSpeed = response.data.wind.speed;
-        card.country = response.data.sys.country;
-      } catch (e) {
-        alert("Error");
-      }
     },
     updaterHandler(data) {
       this.currentValue = data;
       // console.log(this.currentValue);
-    },
+    }
 
+  },
+  computed: {
+    ...mapState({
+      cards: state => state.cards
+    }),
+    ...mapGetters({
+      getCards:"getCards"
+    }),
   }
 };
 </script>
