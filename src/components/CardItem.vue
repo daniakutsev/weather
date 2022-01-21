@@ -1,6 +1,6 @@
 <template class="cardItem">
   <div class="weatherCard"
-  @click="$router.push(`/FullCard/${card.cityName}`)">
+  @click="$router.push({name:'FullCard',params:{id: card.id}})">
     <div class="cardText">{{ card.cityName }}</div>
     <div class="cardText">
       <strong>{{ card.temperature }}</strong>
@@ -10,13 +10,15 @@
     <my-button class="btn" @click="$emit('update', card)">Обновить</my-button>
     <my-button class="btn" @click="$emit('remove', card)">Удалить</my-button>
   </div>
+
 </template>
 
 <script>
 import MyButton from "./UI/MyButton";
 
+
 export default {
-  components: { MyButton },
+  components: {  MyButton },
   props: {
     card: {
       type: Object,

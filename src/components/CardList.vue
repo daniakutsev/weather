@@ -11,6 +11,7 @@
     ></card-item>
   </div>
   <h2 v-else style="color: red; margin-left: 10px">Список городов пуст</h2>
+
 </template>
 
 <script>
@@ -18,6 +19,7 @@ import CardItem from "./CardItem";
 
 export default {
   components: {
+
     CardItem,
   },
   name: "CardList",

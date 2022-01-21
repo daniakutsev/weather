@@ -5,17 +5,20 @@ import FullCard from "../../pages/FullCard";
 const routes = [
   {
     path: "/",
-    component: Main,
+    name:"Main",
+    component: Main
   },
   {
-    path: "/FullCard",
+    path: "/:id",
+    name:"FullCard",
     component: FullCard,
-  },
+    props: true
+  }
 ];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
+  routes
 });
 
 export default router;

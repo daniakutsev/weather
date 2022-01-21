@@ -8,10 +8,15 @@
     />
     <my-button class="addBtn" @click="createCard">Добавить</my-button>
   </form>
+
 </template>
 
 <script>
+
+
+
 export default {
+
   data() {
     return {
       card: {
@@ -19,27 +24,29 @@ export default {
         temperature: 0,
         feelsLike: 0,
         windSpeed: 0,
-        country: ""
+        country: "",
+        id:0
       },
 
     };
   },
   methods: {
     createCard() {
-      this.card.id = Date.now();
       this.$emit("create", this.card);
       this.card = {
         cityName: "",
         temperature: 0,
         feelsLike: 0,
         windSpeed: 0,
-        country: ""
+        country: "",
+        id:0
       };
     },
     handler(data) {
       this.$emit("updater", data);
     }
   },
+
   name: "CardForm"
 };
 </script>
