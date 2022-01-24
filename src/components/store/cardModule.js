@@ -10,10 +10,18 @@ export const cardModule = {
       return state.cards;
     }
   },
+  mutations:{
+    setCards(state){
+      state.cards=this.cards
+    }
+  },
   actions: {
+    removeCard({state},card) {
+      //this.cards = this.cards.filter((c) => c.id !== card.id);
+       state.cards.splice(card.id-1,1)
+    },
     async createCard({ state }, card) {
       state.cards.push(card);
-
       try {
         const response = await axios.get(
           `https://api.openweathermap.org/data/2.5/weather?q=${card.cityName}&units=metric&appid=495b9188c36a232d7ca0b1ee57ed4764`
@@ -28,6 +36,7 @@ export const cardModule = {
       }
     },
     async updateWeather(card) {
+      console.log(card.cityName);
       try {
         const response = await axios.get(
           `https://api.openweathermap.org/data/2.5/weather?q=${card.cityName}&units=metric&appid=495b9188c36a232d7ca0b1ee57ed4764`

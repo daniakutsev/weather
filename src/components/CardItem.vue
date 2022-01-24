@@ -1,5 +1,5 @@
 <template class="cardItem">
-  <div class="weatherCard"
+  <div class="weatherCard" v-bind="$attrs"
   @click="$router.push({name:'FullCard',params:{id: card.id}})">
     <div class="cardText">{{ card.cityName }}</div>
     <div class="cardText">
@@ -18,6 +18,7 @@ import MyButton from "./UI/MyButton";
 
 
 export default {
+  emits: ["remove","update"],
   components: {  MyButton },
   props: {
     card: {

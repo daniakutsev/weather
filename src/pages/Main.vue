@@ -34,11 +34,10 @@ export default {
   methods: {
     ...mapActions({
       createCard: "createCard",
-      updateWeather: "updateWeather"
+      updateWeather: "updateWeather",
+      removeCard:"removeCard"
     }),
-    removeCard(card) {
-      this.cards = this.cards.filter((c) => c.id !== card.id);
-    },
+
     updaterHandler(data) {
       this.currentValue = data;
       // console.log(this.currentValue);
