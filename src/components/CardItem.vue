@@ -7,7 +7,7 @@
     </div>
   </div>
   <div class="card__btns">
-    <my-button class="btn" @click="$emit('update', card)">Обновить</my-button>
+    <my-button class="btn" @click="updateWeather(card)">Обновить</my-button>
     <my-button class="btn" @click="$emit('remove', card)">Удалить</my-button>
   </div>
 
@@ -15,18 +15,24 @@
 
 <script>
 import MyButton from "./UI/MyButton";
+import { mapActions } from "vuex";
 
 
 export default {
-  emits: ["remove","update"],
+  emits: ["remove"],
   components: {  MyButton },
   props: {
     card: {
       type: Object,
       required: true
     }
-
   },
+  methods:{
+    ...mapActions({
+      updateWeather:"updateWeather"
+    })
+  },
+
   name: "CardItem"
 };
 </script>

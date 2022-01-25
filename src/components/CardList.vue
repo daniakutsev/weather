@@ -9,7 +9,6 @@
         v-for="card in cards"
         :key="card.id"
         @remove="$emit('remove', card)"
-        @update="$emit('update', card)"
       ></card-item>
     </div>
 
@@ -20,8 +19,9 @@
 <script>
 import CardItem from "./CardItem";
 
+
 export default {
-  emits: ["remove","update"],
+  emits: ["remove"],
   components: {
     CardItem
   },
@@ -31,7 +31,8 @@ export default {
       type: Array,
       required: true
     }
-  }
+  },
+
 };
 </script>
 
