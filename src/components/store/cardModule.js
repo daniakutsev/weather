@@ -42,34 +42,60 @@ export const cardModule = {
         card.country = response.data.sys.country;
         card.id = state.countId++;
 
-        let hasCookie = document.cookie.match(/cities=(.+?)(;|$)/);
-        if (hasCookie == null) {
-          let tempData = [];
-          tempData.push(state.cards[card.id]);
-          document.cookie ="cities="+ JSON.stringify(tempData);
+        // let hasCookie = document.cookie.match(/cities=(.+?)(;|$)/);
+        // if (hasCookie == null) {
+        //   let tempData = [];
+        //   tempData.push(state.cards[card.id]);
+        //   document.cookie = "cities=" + JSON.stringify(tempData);
+        // }
+        // if (hasCookie != null) {
+        //   let arr = JSON.parse(hasCookie[1]);
+        //   arr.push(state.cards[card.id]);
+        //   document.cookie = "cities=" + JSON.stringify(arr);
+        // }
+
+
+        if (document.cookie === "") {
+          // state.jsonCookiesCards.push(JSON.stringify(state.cards[card.id]));
+          // document.cookie = state.jsonCookiesCards[state.cards[card.id]];let tempData = [];
+
+          document.cookie = JSON.stringify(state.cards);
+          console.log(document.cookie);
         }
-        if (hasCookie != null) {
-          let arr = JSON.parse(hasCookie[1]);
-          arr.push(state.cards[card.id]);
-          document.cookie ="cities="+ JSON.stringify(arr);
+        if (document.cookie != "") {
+          state.jsonCookiesCards = JSON.parse(document.cookie);
+          state.jsonCookiesCards.push(state.cards[card.id]);
+          document.cookie = JSON.stringify(state.jsonCookiesCards);
         }
-        console.log(document.cookie);
-        // state.jsonCookiesCards += JSON.stringify(state.cards[card.id]);
-        // document.cookie = state.jsonCookiesCards;
-        // document.cookie = state.point;
-        // console.log(document.cookie);
+
+
       } catch (e) {
         console.log(e);
       }
     },
 
-    loadCookie({ state }, card) {
-      let hasCookie = document.cookie.match(/cities=(.+?)(;|$)/);
+    loadCookie({ state },card) {
+      try {
 
-      if (document.cookie != "") {
-        card = JSON.parse(hasCookie[1]);
-        state.cards.push(card);
+        state.cards[card.id] = JSON.parse(document.cookie);
+        console.log(state.cards);
+      } catch (e) {
+        console.log(e);
       }
+
+      // let hasCookie = document.cookie;
+      // if (JSON.parse(hasCookie) != null) {
+      //
+      //   console.log(hasCookie);
+      // }
+      //   // card.temperature = hasCookie[state.countId].temperature;
+      //   // card.cityName = hasCookie[state.countId].cityName;
+      //   // card.feelsLike = hasCookie[state.countId].feelsLike;
+      //   // card.windSpeed = hasCookie[state.countId].windSpeed;
+      //   // card.country = hasCookie[state.countId].country;
+      //   // card.id = hasCookie[state.countId].id;
+      //   state.cards.push(card);
+
 
       // if (document.cookie != "") {
       //   let buff = document.cookie.match(/(.+?)(;|$)/);
